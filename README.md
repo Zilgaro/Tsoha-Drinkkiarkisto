@@ -2,7 +2,7 @@
 
 Yleisiä linkkejä:
 
-* [Linkki sovellukseeni](https://www.cs.helsinki.fi)
+* [Linkki sovellukseeni](http://vonsaari.users.cs.helsinki.fi/Drinkkilista/)
 * [Linkki dokumentaatiooni](https://github.com/Zilgaro/Tsoha-Drinkkiarkisto/blob/master/doc/Dokumentaatio.pdf)
 
 ## Työn aihe
