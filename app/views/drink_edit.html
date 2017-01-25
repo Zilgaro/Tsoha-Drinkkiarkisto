@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Muokkaa reseptiä Tom Collins</h1>
+
+<form>
+    <div class="form-group">
+        <label>Nimi</label>
+        <input type="text" class="form-control" value="Tom Collins">
+    </div>
+    <div class="form-group">
+        <label>Tyyppi</label>
+        <input type="text" class="form-control" value="Cocktail">
+    </div>
+    <div class="form-group">
+        <label>Lasi</label>
+        <input type="text" class="form-control" value="Collins-lasi">
+    </div>
+    
+    <div class="form-group">
+        <label>Ainesosat</label>
+        <input type="text" class="form-control" value="4.5cl Giniä">
+        <input type="text" class="form-control" value="3cl sitruunamehua">
+        <input type="text" class="form-control" value="1.5cl siirappia">
+        <input type="text" class="form-control" value="6cl soodavettä">
+    </div>
+     <div class="form-group">
+        <button type="submit" class="btn btn-primary">Lisää ainesosa</button>
+    </div>
+    
+    <div class="form-group">
+        <label>Kuvaus</label>
+        <textarea class="form-control">Tom Collins on eräitä vanhimpia Amerikkalaisia cocktaileja, ensimmäistä kertaa kuvailtu vuonna 1876. Erittäin hyvä ja raikas peruscocktail kaikkiin tilanteisiin.
+        </textarea>
+    </div>
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary">Tallenna</button>
+    </div>
+</form>
+{% endblock %}
