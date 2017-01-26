@@ -8,3 +8,11 @@ Yleisiä linkkejä:
 ## Työn aihe
 
 Työn aiheena tulee olemaan drinkkiarkisto, pienenä erona templateen ajattelin arvostelemismahdollisuutta. [linkki valmiiseen aiheeseen](http://advancedkittenry.github.io/suunnittelu_ja_tyoymparisto/aiheet/Drinkkiarkisto.html) 
+
+## Linkit testisivuihin
+
+* [Kirjautumissivu](http://vonsaari.users.cs.helsinki.fi/Drinkkilista/login)
+* [Drinkkilistasivu](http://vonsaari.users.cs.helsinki.fi/Drinkkilista/drink)
+* [Drinkin esittelysivu](http://vonsaari.users.cs.helsinki.fi/Drinkkilista/drink/1)
+* [Drinkin editointisivu](http://vonsaari.users.cs.helsinki.fi/Drinkkilista/drink/1/edit)
+
