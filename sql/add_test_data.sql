@@ -9,4 +9,4 @@ INSERT INTO Ingredient(name, description) VALUES ('Soodavesi', 'Hiilihapotettua,
 INSERT INTO Recipe(drink_id, ingredient) VALUES (1, 'Gin');
 INSERT INTO Recipe(drink_id, ingredient) VALUES (1, 'Soodavesi');
 
-INSERT INTO Rating(client_id, drink_id, rating) VALUES (1,1,5.0); 
+INSERT INTO Rating(client, drink, rating) VALUES (1,1,5.0); 
