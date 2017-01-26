@@ -21,7 +21,7 @@
     }
 
     public static function drink_edit() {
-      View::make('drink_show.html');
+      View::make('drink_edit.html');
     }
 
     public static function login() {
