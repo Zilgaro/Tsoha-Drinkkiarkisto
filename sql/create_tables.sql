@@ -6,9 +6,8 @@ CREATE TABLE Client(
 );
 
 CREATE TABLE Ingredient (
-	id SERIAL PRIMARY KEY,
 	name varchar(50) NOT NULL,
-	amount float NOT NULL,
+	description Text,
 );
 
 CREATE TABLE Drink(
@@ -16,15 +15,20 @@ CREATE TABLE Drink(
 	name varchar(50) NOT NULL,
 	glass varchar(50),
 	drink_type varchar(50),
-	ingredient integer NOT NULL,
-	description varchar(500),
-	FOREIGN KEY(ingredient) REFERENCES Ingredient(id),
+	description Text,
+);
+
+CREATE TABLE Recipe(
+	drink_id integer NOT NULL,
+	ingredient varchar(50) NOT NULL,
+	FOREIGN KEY(drink_id) REFERENCES Drink(id),
+	FOREIGN KEY(ingredient) REFERENCES Ingredient(name),
 );
 
 CREATE TABLE Rating(
-	
 	client integer NOT NULL,
 	drink integer NOT NULL,
+	rating float NOT NULL,
 	FOREIGN KEY(client) REFERENCES Client(id),
 	FOREIGN KEY(drink) REFERENCES Drink(id),
 );
