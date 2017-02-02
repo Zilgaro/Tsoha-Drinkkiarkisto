@@ -1,7 +1,7 @@
 <?php
 
   $routes->get('/', function() {
-    HelloWorldController::index();
+    DrinkController::index();
   });
 
   $routes->get('/hiekkalaatikko', function() {
@@ -9,10 +9,19 @@
   });
 
   $routes->get('/drink', function() {
-  	HelloWorldController::drink_list();
+  	DrinkController::index();
   });
-  $routes->get('/drink/1', function() {
-  	HelloWorldController::drink_show();	
+
+  $routes->post('/drink', function(){
+    DrinkController::store();
+  });
+
+  $routes->get('/drink/new', function(){
+    DrinkController::create();
+  });
+  
+  $routes->get('/drink/:id', function($id){
+    DrinkController::show($id);
   });
 
   $routes->get('/drink/1/edit', function() {

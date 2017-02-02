@@ -46,4 +46,14 @@ class Drink extends BaseModel{
     	}
     	return null;
 	}
+
+	public function save() {
+		$query = DB::connection()->prepare('INSERT INTO Drink (name, glass, drink_type, description) VALUES (:name, :glass, :drink_type, :description) RETURNING id');
+
+		$query->execute(array('name' => $this->name, 'glass' => $this->glass, 'glass_type' => $this->glass_type, 'description' => $this->description));
+
+		$row = $query->fetch();
+
+		$this->id = $row['id'];
+	}
 }
