@@ -2,7 +2,7 @@
 
 class Drink extends BaseModel{
 	
-	public $id, $name, $glass, $drink_type, $desc;
+	public $id, $name, $glass, $drink_type, $description;
 
 	public function __construct($attributes) {
 		parent::__construct($attributes);
@@ -22,7 +22,7 @@ class Drink extends BaseModel{
 				'name' => $row['name'],
 				'glass' => $row['glass'],
 				'drink_type' => $row['drink_type'],
-				'desc' => $row['description']
+				'description' => $row['description']
 				));
 		}
 		return $drinks;
@@ -40,7 +40,7 @@ class Drink extends BaseModel{
 				'name' => $row['name'],
 				'glass' => $row['glass'],
 				'drink_type' => $row['drink_type'],
-				'desc' => $row['description']
+				'descripton' => $row['description']
 				));
     		return $drink;
     	}
@@ -48,9 +48,9 @@ class Drink extends BaseModel{
 	}
 
 	public function save() {
-		$query = DB::connection()->prepare('INSERT INTO Drink (name, glass, drink_type, description) VALUES (:name, :glass, :drink_type, :description) RETURNING id');
+		$query = DB::connection()->prepare('INSERT INTO Drink (name, glass, drink_type, description) VALUES (:name, :glass, :drink_type, :desc) RETURNING id');
 
-		$query->execute(array('name' => $this->name, 'glass' => $this->glass, 'glass_type' => $this->glass_type, 'description' => $this->description));
+		$query->execute(array('name' => $this->name, 'glass' => $this->glass, 'drink_type' => $this->drink_type, 'description' => $this->description));
 
 		$row = $query->fetch();
 

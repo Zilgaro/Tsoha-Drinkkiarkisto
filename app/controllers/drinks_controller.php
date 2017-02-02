@@ -8,10 +8,14 @@ class DrinkController extends BaseController{
 	}
 
 	public static function show($id) {
-		$drink = Drink:find($id);
-
-		View::make('drink/drink_show.html', $drink);
+		$drink = Drink::find($id);
+		//Hae ainesosat myös reseptistä
+		View::make('drink/drink_show.html', array('drink' => $drink));
 	}
+
+	public static function create() {
+		View::make('drink/new.html');
+	} 
 
 	public static function store() {
 		$params = $_POST;

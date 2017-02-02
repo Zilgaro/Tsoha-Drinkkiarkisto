@@ -1,25 +1,25 @@
 {% extends "base.html" %}
 {% block content %}
 
-<h1>Tom Collins</h1>
+<h1>{{drink.name}}</h1>
 
 <div class="alert alert-success">
 	{{message}}
 	</div>
 
 <p>
-	<button class="btn btn-danger">Poista</button> <a href ="#" class="btn btn-default">Muokkaa</a>
+	<button class="btn btn-danger">Poista</button> <a href ="{{base_path}}/drink/{{drink.id}}/edit" class="btn btn-default">Muokkaa</a>
 </p>
 
 <p>
-	Tähän tulee drinkin kuvaus/ohje
+	{{drink.description}}
 </p>
 <ul>
-	<li><strong>Drinkkityyppi:</strong>Cocktail</li>
-	<li><strong>Lasityyppi:</strong>Collins-lasi</li>
+	<li><strong>Drinkkityyppi:</strong> {{drink.drink_type}}</li>
+	<li><strong>Lasityyppi:</strong> {{drink.glass}}</li>
 </ul>
 
-<h3>Tähän tulee drinkin ainesosat</h3>
+<h3>Tähän tulee drinkin ainesosat (ei vielä)</h3>
 <ul>
 	<li>Gin 4.5cl</li>
 	<li>Sitruunamehua 3cl</li>
