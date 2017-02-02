@@ -8,8 +8,11 @@
     }
 
     public static function sandbox(){
-      // Testaa koodiasi täällä
-      View::make('game_show.html');
+      $tcollins = Drink::find(1);
+      $drinks = Drink::all();
+
+      Kint::dump($drinks);
+      Kint::dump($tcollins);
     }
 
     public static function drink_list() {
