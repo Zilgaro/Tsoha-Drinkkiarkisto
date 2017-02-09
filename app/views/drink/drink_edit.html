@@ -1,19 +1,19 @@
 {% extends "base.html" %}
 {% block content %}
-<h1>Muokkaa reseptiä {{drink.name}}</h1>
+<h1>Muokkaa reseptiä {{attributes.name}}</h1>
 
-<form method='post' action='{base_path}/drink/'>
+<form method='post' action='{{base_path}}/drink/{{attributes.id}}/edit'>
     <div class="form-group">
         <label>Nimi</label>
-        <input type="text" class="form-control" value="{{drink.name}}">
+        <input type="text" class="form-control" value="{{attributes.name}}">
     </div>
     <div class="form-group">
         <label>Tyyppi</label>
-        <input type="text" class="form-control" value="{{drink.drink_type}}">
+        <input type="text" class="form-control" value="{{attributes.drink_type}}">
     </div>
     <div class="form-group">
         <label>Lasi</label>
-        <input type="text" class="form-control" value="{{drink.glass}}">
+        <input type="text" class="form-control" value="{{attributes.glass}}">
     </div>
     
     <div class="form-group">

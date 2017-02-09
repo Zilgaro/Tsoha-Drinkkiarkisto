@@ -8,7 +8,10 @@
 	</div>
 
 <p>
-	<button class="btn btn-danger">Poista</button> <a href ="{{base_path}}/drink/{{drink.id}}/edit" class="btn btn-default">Muokkaa</a>
+	<form method="post"  action="{{base_path}}/drink/{{drink.id}}/destroy"style="display: inline-block;">
+		<button type="submit" class="btn btn-danger">Poista</button> 
+
+	<a href ="{{base_path}}/drink/{{drink.id}}/edit" class="btn btn-default">Muokkaa</a>
 </p>
 
 <p>

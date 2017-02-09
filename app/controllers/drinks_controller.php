@@ -32,7 +32,7 @@ class DrinkController extends BaseController{
 		$errors = $drink->errors();
 
 		if(count($errors) == 0) {
-			$drink->save();
+			$drink->update();
 
 			Redirect::to('/drink/'. $drink->id, array('message' => 'Drinkki on lisätty arkistoon!'));
 		} else {
@@ -57,7 +57,7 @@ class DrinkController extends BaseController{
 		$errors = $drink->errors();
 
 		if(count($errors) == 0) {
-			$drink->update();
+			$drink->save();
 
 			Redirect::to('/drink/'. $drink->id, array('message' => 'Drinkki päivitettiin onnistuneesti!'));
 		} else {

@@ -60,18 +60,18 @@ class Drink extends BaseModel{
 	}
 
 	public function update() {
-		$query = DB::connection()->prepare('UPDATE Drink (name, glass, drink_type, description) VALUES (:name, :glass, :drink_type, :description) RETURNING id');
+		$query = DB::connection()->prepare('UPDATE Drink SET name = :name, glass = :glass, drink_type = :drink_type, description = :description WHERE id = :id');
 
-		$query->execute(array('name' => $this->name, 'glass' => $this->glass, 'drink_type' => $this->drink_type, 'description' => $this->description));
+		$query->execute(array('id' => $this->id, 'name' => $this->name, 'glass' => $this->glass, 'drink_type' => $this->drink_type, 'description' => $this->description));
 
 		$row = $query->fetch();
 	}
 
-	public fuction destroy() {
-		$reference_query = DB::connection()->prepare('DELETE FROM Recipes WHERE drink = :id');
+	public function destroy() {
+		## kun pitää poistaa resepteistä $reference_query = DB::connection()->prepare('DELETE FROM Recipes WHERE drink = :id');
         $query = DB::connection()->prepare('DELETE FROM Drink WHERE id = :id');
         
-        $reference_query->execute(array('id' => $this->id));
+        ##$reference_query->execute(array('id' => $this->id));
         $query->execute(array('id' => $this->id));
 	}
 
