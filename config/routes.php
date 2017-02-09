@@ -24,8 +24,16 @@
     DrinkController::show($id);
   });
 
-  $routes->get('/drink/1/edit', function() {
-    HelloWorldController::drink_edit();
+  $routes->get('/drink/:id/edit', function($id) {
+    DrinkController::drink_edit($id);
+  });
+
+  $routes->post('/drink/:id/edit', function($id) {
+    DrinkController::update($id);
+  });
+
+  $routes->post('/drink/:id/destroy', function($id) {
+    DrinkController::destroy($id);
   });
 
   $routes->get('/login', function() {

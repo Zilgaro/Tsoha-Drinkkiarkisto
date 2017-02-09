@@ -7,5 +7,7 @@ class Recipe extends BaseModel {
 		parent::__construct($attributes);
 	}
 
-	public static 
+	public static function find($drink_id) {
+		//jotain
+	}
 }

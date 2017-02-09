@@ -8,11 +8,15 @@
     }
 
     public static function sandbox(){
-      $tcollins = Drink::find(1);
-      $drinks = Drink::all();
+      $kak = new Drink(array(
+        'name' => '',
+        'glass' => 'asklfhawdhfklsdhfasdhfjhdjfhsdhfdhsjlfhdsjlghjlshgjlsdhgjlsdgklsdhgklsdjgkljsdgkljsdgkl',
+        'drink_type' => 'kldfklasdklasdkgsfksjkgnasdklgsklsdklnklasdnklnkldnvklsdnvklasdnsdnvklsdnvklsdnklsdnvklsdnvklsndnsdklvnsdnvsdlnvsdklnvsdklvsdklnvklsdnvklsdnvklsdnklvsdnvklsdnvkln',
+        'description' => 'AIKA HASU!'
+        ));
+        $errors = $kak->errors();
 
-      Kint::dump($drinks);
-      Kint::dump($tcollins);
+        Kint::dump($errors);
     }
 
     public static function drink_list() {
