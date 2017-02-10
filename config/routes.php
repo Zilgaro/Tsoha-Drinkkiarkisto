@@ -37,5 +37,9 @@
   });
 
   $routes->get('/login', function() {
-    HelloWorldController::login();
+    UserController::login();
+  });
+
+  $routes->post('/login', function() {
+    UserController::handle_login();
   });
