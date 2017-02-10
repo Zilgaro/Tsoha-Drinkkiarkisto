@@ -3,9 +3,11 @@
 
 <h1>{{drink.name}}</h1>
 
+{% if message is not empty %}
 <div class="alert alert-success">
-	{{message}}
-	</div>
+    <p>{{text}}</p>
+</div>
+{% endif %}
 
 <p>
 	<form method="post"  action="{{base_path}}/drink/{{drink.id}}/destroy"style="display: inline-block;">

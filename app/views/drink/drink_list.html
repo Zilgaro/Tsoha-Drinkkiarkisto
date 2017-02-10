@@ -4,8 +4,14 @@
 
 {% if user_logged_in %}
     <h1>Tervetuloa {{user_logged_in.name}}!</h1>
-  {% endif %}
-  
+ {% endif %}
+
+ {% if message is not empty %}
+<div class="alert alert-success">
+    <p>{{message}}</p>
+</div>
+{% endif %}
+
 	<h1>Kaikkien drinkkien lista</h1>
 
 	<p>

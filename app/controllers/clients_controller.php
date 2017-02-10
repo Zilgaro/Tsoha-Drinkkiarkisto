@@ -13,9 +13,9 @@ class ClientController extends BaseController {
 		if (!$client) {
 			View::make('client/login.html', array('error' => 'Väärä käyttäjatunnus ja/tai salasana!', 'name' => $params['name']));
 		} else {
-			$_SESSION['client'] = $client->id;
+			$_SESSION['user'] = $client->id;
 
-			Redirect::to('/', array('message' => 'Tervetuloa takaisin ' . $client->name . '!'));
+			Redirect::to('/drink', array('message' => 'Tervetuloa takaisin ' . $client->name . '!'));
 		}  
 	}
 }

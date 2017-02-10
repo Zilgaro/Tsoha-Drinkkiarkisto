@@ -42,7 +42,7 @@ class Drink extends BaseModel{
 				'name' => $row['name'],
 				'glass' => $row['glass'],
 				'drink_type' => $row['drink_type'],
-				'descripton' => $row['description']
+				'description' => $row['description']
 				));
     		return $drink;
     	}

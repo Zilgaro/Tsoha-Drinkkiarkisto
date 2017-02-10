@@ -37,9 +37,9 @@
   });
 
   $routes->get('/login', function() {
-    UserController::login();
+    ClientController::login();
   });
 
   $routes->post('/login', function() {
-    UserController::handle_login();
+    ClientController::handle_login();
   });
