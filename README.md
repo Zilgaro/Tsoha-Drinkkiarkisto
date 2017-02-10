@@ -16,3 +16,7 @@ Työn aiheena tulee olemaan drinkkiarkisto, pienenä erona templateen ajattelin 
 * [Drinkin esittelysivu](http://vonsaari.users.cs.helsinki.fi/Drinkkilista/drink/1)
 * [Drinkin editointisivu](http://vonsaari.users.cs.helsinki.fi/Drinkkilista/drink/1/edit)
 
+## Tunnukset kirjautumiseen
+Käyttäjänimi: Ano
+Salasana: Ano123
+(Case sensitive)
