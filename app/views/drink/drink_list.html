@@ -1,6 +1,11 @@
 {% extends "base.html" %}
 {% block content %}
 {% import "macros/forms.html" as forms %}
+
+{% if user_logged_in %}
+    <h1>Tervetuloa {{user_logged_in.name}}!</h1>
+  {% endif %}
+  
 	<h1>Kaikkien drinkkien lista</h1>
 
 	<p>

@@ -2,13 +2,13 @@
 
   class BaseController{
 
-    public static function get_user_logged_in(){
+    public static function get_client_logged_in(){
       if(isset($_SESSION['client'])) {
         $client_id = $_SESSION['client'];
 
-        $client = Client::find($user_id);
+        $client = Client::find($client_id);
 
-        return $user;
+        return $client;
       }
       return null;
     }
