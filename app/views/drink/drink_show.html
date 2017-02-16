@@ -24,12 +24,13 @@
 	<li><strong>Lasityyppi:</strong> {{drink.glass}}</li>
 </ul>
 
-<h3>Tähän tulee drinkin ainesosat (ei vielä)</h3>
-<ul>
-	<li>Gin 4.5cl</li>
-	<li>Sitruunamehua 3cl</li>
-	<li>Siirappia 1.5cl</li>
-	<li>Soodavettä 6cl</li>
-</ul>
+<h3>Ainesosat:</h3>
+<div>
+	<ul>
+	{% for ingredient in recipe %}
+	<li>{{ingredient.name}}</li>	
+	{% endfor %}
+	</ul>
+</div>
 <!--Ehkä vielä tulee kuitenkin vaihdeltua-->
 {% endblock %}

@@ -10,13 +10,15 @@ class DrinkController extends BaseController{
 	public static function show($id) {
 		$drink = Drink::find($id);
 		//Hae ainesosat myös reseptistä
-		View::make('drink/drink_show.html', array('drink' => $drink));
+		$recipe = Recipe::find($id);
+		View::make('drink/drink_show.html', array('drink' => $drink, 'recipe' => $recipe));
 	}
 
 	public static function drink_edit($id) {
 		$drink = Drink::find($id);
+		$ingredients = Ingredient::all();
 
-		View::make('drink/drink_edit.html', array('attributes' => $drink));
+		View::make('drink/drink_edit.html', array('attributes' => $drink, 'ingredients' => $ingredients));
 	}
 
 	public static function update($id) {
@@ -42,7 +44,8 @@ class DrinkController extends BaseController{
 	}
 
 	public static function create() {
-		View::make('drink/new.html');
+		$ingredients = Ingredient::all();
+		View::make('drink/new.html', array('ingredients' => $ingredients));
 	} 
 
 	public static function store() {

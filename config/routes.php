@@ -43,11 +43,11 @@
   $routes->get('/login', function() {
     ClientController::login();
   });
-
-  $routes->post('/login', function() {
-    ClientController::handle_login();
-  });
-
+  
   $routes->post('/logout', function() {
     ClientController::logout();
+  });
+  
+  $routes->post('/login', function() {
+    ClientController::handle_login();
   });

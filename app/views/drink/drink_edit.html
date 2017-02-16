@@ -34,14 +34,12 @@
     </div>
     
     <div class="form-group">
-        <label>Ainesosat (tulee myöhemmin)</label>
-        <input type="text" class="form-control" value="4.5cl Giniä">
-        <input type="text" class="form-control" value="3cl sitruunamehua">
-        <input type="text" class="form-control" value="1.5cl siirappia">
-        <input type="text" class="form-control" value="6cl soodavettä">
-    </div>
-     <div class="form-group">
-        <button type="submit" class="btn btn-primary">Lisää ainesosa</button>
+    <label>Ainesosat</label>
+        <select class="form-control" name="ingredients[]" multiple="">
+        {% for ingredient in ingredients %}
+            <option value="{{ingredient.name}}">{{ingredient.name}}</option>
+        {% endfor %}
+        </select>
     </div>
     
     <div class="form-group">

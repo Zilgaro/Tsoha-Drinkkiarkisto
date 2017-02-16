@@ -4,7 +4,7 @@ class Client extends BaseModel {
 
 	public $id, $name, $password;
 
-	 public function __construct($attributes) {
+	public function __construct($attributes) {
         parent::__construct($attributes);
         $this->validators = array('validate_name');
     }

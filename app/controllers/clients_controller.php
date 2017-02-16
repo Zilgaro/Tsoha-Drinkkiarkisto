@@ -5,11 +5,6 @@ class ClientController extends BaseController {
 		View::make('client/login.html');
 	}
 
-	public static function ĺogout() {
-		$_SESSION['user'] = null;
-		Redirect::to('/login', array('message' => 'Olet kirjautunut ulos!'));
-	}
-
 	public static function handle_login() {
 		$params = $_POST;
 
@@ -22,5 +17,10 @@ class ClientController extends BaseController {
 
 			Redirect::to('/drink', array('message' => 'Tervetuloa takaisin ' . $client->name . '!'));
 		}  
+	}
+
+	public static function logout() {
+		$_SESSION['user'] = null;
+		Redirect::to('/login', array('message' => 'Olet kirjautunut ulos!'));
 	}
 }
