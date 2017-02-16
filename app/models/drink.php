@@ -59,19 +59,37 @@ class Drink extends BaseModel{
 		$this->id = $row['id'];
 
 		foreach ($ingredients as $ingredient) {
-			$query = DB::connection()->prepare('INSERT INTO Recipe (drink_id, ingredient) VALUES (:drink_id, :ingredient)');
+			$query = DB::connection()->prepare('INSERT INTO Recipe (id, ingredient) VALUES (:id, :ingredient)');
 			$query->execute(array(
-				'drink_id' => $this->id,
+				'id' => $this->id,
 				'ingredient' => $ingredient));
 		}
 	}
 
-	public function update() {
+	public function update($ingredients) {
 		$query = DB::connection()->prepare('UPDATE Drink SET name = :name, glass = :glass, drink_type = :drink_type, description = :description WHERE id = :id');
 
 		$query->execute(array('id' => $this->id, 'name' => $this->name, 'glass' => $this->glass, 'drink_type' => $this->drink_type, 'description' => $this->description));
 
 		$row = $query->fetch();
+		$this->id = $row['id'];
+
+		//tulee ensin poistaa vanhat
+		$query = DB::connection()->prepare('DELETE FROM Recipe WHERE id = :id');
+		$query->execute(array(
+			'id' => $this->id
+		));
+
+		foreach ($ingredients as $ingredient) {
+			$query = DB::connection()->prepare('INSERT INTO Recipe (id, ingredient) VALUES (:id, :ingredient)');
+			$query->execute(array(
+				'id' => $this->id,
+				'ingredient' => $ingredient));
+		}
+
+
+
+
 	}
 
 	public function destroy() {

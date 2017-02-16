@@ -31,11 +31,12 @@ class DrinkController extends BaseController{
 			'drink_type' => $params['drink_type'],
 			'description' => $params['description']
 		);
+		$ingredients = $params['ingredients'];
 		$drink = new Drink($attributes);
 		$errors = $drink->errors();
 
 		if(count($errors) == 0) {
-			$drink->update();
+			$drink->update($ingredients);
 
 			Redirect::to('/drink/'. $drink->id, array('message' => 'Drinkki päivitettiin onnistuneesti!'));
 		} else {
