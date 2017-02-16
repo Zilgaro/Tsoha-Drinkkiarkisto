@@ -1,4 +1,8 @@
 <?php
+  
+  function check_logged_in() {
+    BaseController::check_logged_in();
+  }
 
   $routes->get('/', function() {
     DrinkController::index();
@@ -16,15 +20,15 @@
     DrinkController::store();
   });
 
-  $routes->get('/drink/new', function(){
+  $routes->get('/drink/new', 'check_logged_in', function(){
     DrinkController::create();
   });
   
-  $routes->get('/drink/:id', function($id){
+  $routes->get('/drink/:id', 'check_logged_in', function($id){
     DrinkController::show($id);
   });
 
-  $routes->get('/drink/:id/edit', function($id) {
+  $routes->get('/drink/:id/edit', 'check_logged_in', function($id) {
     DrinkController::drink_edit($id);
   });
 
@@ -42,4 +46,8 @@
 
   $routes->post('/login', function() {
     ClientController::handle_login();
+  });
+
+  $routes->post('/logout', function() {
+    ClientController::logout();
   });
