@@ -49,7 +49,7 @@ class Drink extends BaseModel{
     	return null;
 	}
 
-	public function save() {
+	public function save($ingredients) {
 		$query = DB::connection()->prepare('INSERT INTO Drink (name, glass, drink_type, description) VALUES (:name, :glass, :drink_type, :description) RETURNING id');
 
 		$query->execute(array('name' => $this->name, 'glass' => $this->glass, 'drink_type' => $this->drink_type, 'description' => $this->description));
@@ -57,6 +57,13 @@ class Drink extends BaseModel{
 		$row = $query->fetch();
 
 		$this->id = $row['id'];
+
+		foreach ($ingredients as $ingredient) {
+			$query = DB::connection()->prepare('INSERT INTO Recipe (drink_id, ingredient) VALUES (:drink_id, :ingredient)');
+			$query->execute(array(
+				'drink_id' => $this->id,
+				'ingredient' => $ingredient));
+		}
 	}
 
 	public function update() {

@@ -57,11 +57,13 @@ class DrinkController extends BaseController{
 			'drink_type' => $params['drink_type'],
 			'description' => $params['description']
 		);
+		$ingredients = $params['ingredients'];
 		$drink = new Drink($attributes);
+
 		$errors = $drink->errors();
 
 		if(count($errors) == 0) {
-			$drink->save();
+			$drink->save($ingredients);
 
 			Redirect::to('/drink/'. $drink->id, array('message' => 'Drinkki on listätty arkistoon onnistuneesti!'));
 		} else {
