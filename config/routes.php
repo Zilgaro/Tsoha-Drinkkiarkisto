@@ -51,3 +51,11 @@
   $routes->post('/login', function() {
     ClientController::handle_login();
   });
+
+  $routes->get('/ingredient', function(){
+    IngredientController::index();
+  });
+  
+  $routes->get('/ingredient/:name', function($name){
+    IngredientController::show($name);
+  });

@@ -22,4 +22,20 @@ class Ingredient extends BaseModel {
 
 		return $ingredients;
     }
+
+    public static function find($name) {
+
+    $query = DB::connection()->prepare('SELECT * FROM Ingredient WHERE name = :name LIMIT 1');
+    	$query->execute(array('name' => $name));
+    	$row = $query->fetch();
+
+    	if($row){
+    		$drink = new Drink(array(
+				'name' => $row['name'],
+				'description' => $row['description']
+				));
+    		return $drink;
+    	}
+    	return null;
+	}
 }

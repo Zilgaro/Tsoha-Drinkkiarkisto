@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h1>{{ingredient.name}}</h1>
+
+{% if message is not empty %}
+<div class="alert alert-success">
+    <p>{{text}}</p>
+</div>
+{% endif %}
+
+<p>
+	<form method="post"  action="{{base_path}}/ingredient/{{ingredient.name}}/destroy"style="display: inline-block;">
+		<button type="submit" class="btn btn-danger" enabled="false">Poista</button> 
+		<!--{{base_path}}/ingredient/{{ingredient.id}}/edit-->
+	<a href ="#" class="btn btn-default">Muokkaa</a>
+</p>
+
+<p>
+	{{ingredient.description}}
+</p>
+{% endblock %}
