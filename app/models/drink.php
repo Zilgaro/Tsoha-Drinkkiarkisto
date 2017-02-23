@@ -132,7 +132,7 @@ class Drink extends BaseModel{
 	##Ihan vaan että on joku roti
 	public function validate_description() {
 		$errors = array();
-		if ($this->validate_string_length($this->drink_type, 1000)) {
+		if ($this->validate_string_length($this->description, 1000)) {
 			$errors[] = 'Kuvailuun riittänee 1000 kirjainta, ystävä hyvä!';
 		}
 		return $errors;

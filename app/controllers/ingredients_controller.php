@@ -12,4 +12,28 @@ class IngredientController extends BaseController {
 		//Voisi tehdä lopuksi niin että näytetään missä kaikissa drinkeissä mukana
 		View::make('ingredient/ingredient_show.html', array('ingredient' => $ingredient));
 	}
+
+	public static function create() {
+		View::make('ingredient/ingredient_new.html');
+	}
+
+	public static function store() {
+		$params = $_POST;
+
+		$attributes = array(
+			'name' => $params['name'],
+			'description' => $params['description']
+			);
+		$ingredient = new Ingredient($attributes);
+		$errors = $ingredient->errors();
+
+		if (count($errors) == 0) {
+			$ingredient->save();
+
+			Redirect::to('/ingredient/' . $ingredient->name, array('message' => 'Ainesosa lisättiin onnistuneesti!'));
+		} else {
+			View::make('ingredient/ingredient_new.html', array('errors' => $errors));
+		}
+	}
+
 }

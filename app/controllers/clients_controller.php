@@ -23,7 +23,7 @@ class ClientController extends BaseController {
 		}  
 	}
 
-	public static function create() {
+	public static function create() { //Store parempi nimi?
 		$params = $_POST;
 
 		if ($params['password'] != $params['passwordAgain']) {
