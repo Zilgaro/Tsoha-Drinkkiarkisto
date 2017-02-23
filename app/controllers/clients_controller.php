@@ -30,7 +30,7 @@ class ClientController extends BaseController {
 			View::make('client/register.html', array('errorMEssage' => 'Salasanat eivät ole samat!', 'name' => $params['name']));
 		}
 
-		if (Client::checkAvailable($params['name'])) {
+		if (Client::checkAvailable($params['name'])) { // tää pitäs siirtää modelii
 			$client = new Client(array(
 				'name' => $params['name'],
 				'password' => $params['password']

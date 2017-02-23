@@ -6,7 +6,7 @@ class Drink extends BaseModel{
 
 	public function __construct($attributes) {
 		parent::__construct($attributes);
-		$this->validators = array('validate_name', 'validate_glass','validate_drink_type', 'validate_description');
+		$this->validators = array('validate_name', 'validate_name_available','validate_glass','validate_drink_type', 'validate_description');
 
 	}
 
@@ -135,6 +135,19 @@ class Drink extends BaseModel{
 		if ($this->validate_string_length($this->description, 1000)) {
 			$errors[] = 'Kuvailuun riittänee 1000 kirjainta, ystävä hyvä!';
 		}
+		return $errors;
+	}
+
+	public function validate_name_available() {
+		$errors = array();
+		$drinks = self::all();
+
+		foreach ($drinks as $drink) {
+			if ($drink->name == $this->name) {
+				$errors[] = 'Nimi on jo käytössä!';
+			}
+		}
+
 		return $errors;
 	}
 
