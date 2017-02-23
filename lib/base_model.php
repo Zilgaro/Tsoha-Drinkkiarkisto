@@ -42,4 +42,12 @@
       }
       return false;
     }
+
+    public function validate_string_brevity($string, $length) {
+      if (strlen($string) < $length) {
+        return true;
+      }
+
+      return false;
+    }
     }

@@ -16,7 +16,7 @@
   	DrinkController::index();
   });
 
-  $routes->post('/drink', function(){
+  $routes->post('/drink', 'check_logged_in', function(){
     DrinkController::store();
   });
 
@@ -38,6 +38,14 @@
 
   $routes->post('/drink/:id/destroy', function($id) {
     DrinkController::destroy($id);
+  });
+
+  $routes->get('/register', function() {
+    ClientController::register();
+  });
+
+  $routes->post('/register', function() {
+    ClientController::create();
   });
 
   $routes->get('/login', function() {

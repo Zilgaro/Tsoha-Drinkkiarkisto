@@ -5,18 +5,48 @@ class ClientController extends BaseController {
 		View::make('client/login.html');
 	}
 
+	public static function register() {
+		View::make('client/register.html');
+	}
+
 	public static function handle_login() {
 		$params = $_POST;
 
 		$client = Client::authenticate($params['name'], $params['password']);
 
 		if (!$client) {
-			View::make('client/login.html', array('error' => 'Väärä käyttäjatunnus ja/tai salasana!', 'name' => $params['name']));
+			View::make('client/login.html', array('errors' => 'Väärä käyttäjatunnus ja/tai salasana!', 'name' => $params['name']));
 		} else {
 			$_SESSION['user'] = $client->id;
 
 			Redirect::to('/drink', array('message' => 'Tervetuloa takaisin ' . $client->name . '!'));
 		}  
+	}
+
+	public static function create() {
+		$params = $_POST;
+
+		if ($params['password'] != $params['passwordAgain']) {
+			View::make('client/register.html', array('errors' => 'Salasanat eivät ole samat!', 'name' => $params['name']));
+		}
+
+		if (Client::checkAvailable($params['name'])) {
+			$client = new Client(array(
+				'name' => $params['name'],
+				'password' => $params['password']
+			));
+
+
+			$errors = $client->errors();
+			if(count($errors) == 0) {
+				$client->save();
+				Redirect::to('/login'. $drink->id, array('message' => 'Käyttäjatunnus luotiin onnistuneesti, kirjaudu sisään!'));	
+			} else {
+				View::make('client/register.html', array('errors' => $errors);
+			}
+		} else {
+			View::make('client/register.html', array('errors' => 'Käyttäjatunnus on jo käytössä!'));
+		}
 	}
 
 	public static function logout() {
