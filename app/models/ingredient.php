@@ -40,7 +40,7 @@ class Ingredient extends BaseModel {
     	return null;
 	}
 
-	public static function save() {
+	public function save() {
 		$query = DB::connection()->prepare('INSERT INTO Ingredient (name, description) VALUES (:name, :description)');
 		$query->execute(array('name' => $this->name, 'description' => $this->description));
 	}
@@ -64,6 +64,7 @@ class Ingredient extends BaseModel {
 		if ($this->validate_string_brevity($this->name, $length)) {
 			$errors[] = 'Nimen tulee olla ainakin ' . $length . ' merkkiä pitkä!';
 		}
+		return $errors;
 	}
 
 	public function validate_no_duplicate_names() {
