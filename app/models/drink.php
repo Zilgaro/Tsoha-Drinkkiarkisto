@@ -86,10 +86,6 @@ class Drink extends BaseModel{
 				'id' => $this->id,
 				'ingredient' => $ingredient));
 		}
-
-
-
-
 	}
 
 	public function destroy() {

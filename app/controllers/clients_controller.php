@@ -25,10 +25,7 @@ class ClientController extends BaseController {
 
 	public static function create() { //Store parempi nimi?
 		$params = $_POST;
-
-		if ($params['password'] != $params['passwordAgain']) {
-			View::make('client/register.html', array('errorMessage' => 'Salasanat eivät ole samat!', 'name' => $params['name']));
-		}
+		$errors = array();
 
 		if (Client::checkAvailable($params['name'])) { // tää pitäs siirtää modelii
 			$client = new Client(array(
@@ -38,6 +35,9 @@ class ClientController extends BaseController {
 
 
 			$errors = $client->errors();
+			if ($params['password'] != $params['passwordAgain']) {
+				$errors[] = 'Salasanat eivät ole samat!';
+			}
 			if(count($errors) == 0) {
 				$client->save();
 				Redirect::to('/login', array('message' => 'Käyttäjatunnus luotiin onnistuneesti, kirjaudu sisään!'));	
