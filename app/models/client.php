@@ -6,7 +6,7 @@ class Client extends BaseModel {
 
 	public function __construct($attributes) {
         parent::__construct($attributes);
-        $this->validators = array('validate_name', 'validate_password');
+        $this->validators = array('validate_username', 'validate_password');
     }
 
     public static function all(){
@@ -68,10 +68,10 @@ class Client extends BaseModel {
     }
 
     public function checkAvailable($name) {
-        $clients = $this->all();
+        $clients = self::all();
 
         foreach ($clients as $client) { 
-            if ($client->$name == $name) {
+            if ($client->name == $name) {
                 return false;
             }
         }
@@ -114,6 +114,6 @@ class Client extends BaseModel {
             $errors[] = 'Salasana ei saa olla yli ' . $length . ' merkkiä pitkä!';
         }
         return $errors;
-    }
+    
     }
 }

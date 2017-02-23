@@ -10,6 +10,13 @@
       </ul>
   </div>
   {% endif %}
+
+  {% if errorMessage is not empty %}
+    <div class="alert alert-danger">
+      <p>{{errorMessage}}</p>
+    </div>
+  {% endif %}
+
   <h1>Rekisteröidy käyttäjäksi</h1>
 
   <form method="post" action="{{base_path}}/register">
