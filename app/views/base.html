@@ -41,7 +41,10 @@
             <!-- Navigaation linkit -->
             <li><a href="{{base_path}}/drink">Drinkit</a></li>
             <li><a href="{{base_path}}/ingredient">Ainesosat</a></li>
+            {% if user_logged_in %}
+            {% else %}
             <li><a href="{{base_path}}/register">Rekisteröidy käyttäjäksi</a></li>
+            {% endif %}
           </ul>
 
           {% if user_logged_in %}

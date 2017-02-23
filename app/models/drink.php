@@ -94,6 +94,9 @@ class Drink extends BaseModel{
 
 	public function destroy() {
 		## kun pitää poistaa resepteistä $reference_query = DB::connection()->prepare('DELETE FROM Recipes WHERE drink = :id');
+		$query = DB::connection()->prepare('DELETE FROM Recipe WHERE drink_id = :id');
+		$query->execute(array('id' => $this->id));
+
         $query = DB::connection()->prepare('DELETE FROM Drink WHERE id = :id');
         
         ##$reference_query->execute(array('id' => $this->id));

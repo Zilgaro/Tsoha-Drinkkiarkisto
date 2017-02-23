@@ -27,7 +27,7 @@ class ClientController extends BaseController {
 		$params = $_POST;
 
 		if ($params['password'] != $params['passwordAgain']) {
-			View::make('client/register.html', array('errorMEssage' => 'Salasanat eivät ole samat!', 'name' => $params['name']));
+			View::make('client/register.html', array('errorMessage' => 'Salasanat eivät ole samat!', 'name' => $params['name']));
 		}
 
 		if (Client::checkAvailable($params['name'])) { // tää pitäs siirtää modelii
