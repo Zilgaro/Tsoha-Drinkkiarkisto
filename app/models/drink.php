@@ -59,7 +59,7 @@ class Drink extends BaseModel{
 		$this->id = $row['id'];
 
 		foreach ($ingredients as $ingredient) {
-			$query = DB::connection()->prepare('INSERT INTO Recipe (id, ingredient) VALUES (:id, :ingredient)');
+			$query = DB::connection()->prepare('INSERT INTO Recipe (drink_id, ingredient) VALUES (:id, :ingredient)');
 			$query->execute(array(
 				'id' => $this->id,
 				'ingredient' => $ingredient));
