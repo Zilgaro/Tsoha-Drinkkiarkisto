@@ -4,7 +4,7 @@ class Ingredient extends BaseModel {
 
 	public function __construct($attributes) {
         parent::__construct($attributes);
-        $this->validators = array('validate_name', 'validate_no_duplicate_names', 'validate_description');
+        $this->validators = array('validate_name', 'validate_description');
     }
 
     public static function all() {
@@ -48,6 +48,12 @@ class Ingredient extends BaseModel {
 	public function update() {
 		 $query = DB::connection()->prepare('UPDATE Ingredient SET description = :description WHERE name = :name');
 		 $query->execute(array('name' => $this->name, 'description' => $this->description));
+	}
+
+	public function destroy() {
+        $query = DB::connection()->prepare('DELETE FROM Ingredient WHERE name = :name');
+        
+        $query->execute(array('name' => $this->name));
 	}
 
 

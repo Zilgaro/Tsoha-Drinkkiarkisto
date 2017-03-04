@@ -79,3 +79,15 @@
   $routes->get('/ingredient/:name', 'check_logged_in', function($name){
     IngredientController::show($name);
   });
+
+  $routes->get('/ingredient/:name/edit', 'check_logged_in', function($name){
+    IngredientController::ingredient_edit($name);
+  });
+
+  $routes->post('/ingredient/:name/edit', 'check_logged_in', function($name) {
+    IngredientController::update($name);
+  });
+
+  $routes->post('/ingredient/:name/destroy', 'check_logged_in', function($name) {
+    IngredientController::destroy($name);
+  });  

@@ -21,4 +21,20 @@ class Recipe extends BaseModel {
 		}
 		return $recipe;
 	}
+
+	public static function findDrinksByIngredient($name) {
+		$query = DB::connection()->prepare('SELECT d.name FROM Ingredient i JOIN Recipe r ON i.name = r.ingredient JOIN Drink d ON r.drink_id = d.id WHERE i.name = :name');
+		$query->execute(array('name' => $name));
+
+		$rows = $query->fetchAll();
+		$recipe = array();
+
+		foreach ($rows as $row) {
+			$recipe[] = new Recipe(array(
+				'name' => $row['name']
+				));
+		}
+
+		return $recipe;
+	}
 }

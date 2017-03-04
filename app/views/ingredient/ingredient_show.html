@@ -13,10 +13,21 @@
 	<form method="post"  action="{{base_path}}/ingredient/{{ingredient.name}}/destroy"style="display: inline-block;">
 		<button type="submit" class="btn btn-danger" enabled="false">Poista</button> 
 		<!--{{base_path}}/ingredient/{{ingredient.id}}/edit-->
-	<a href ="#" class="btn btn-default">Muokkaa</a>
+	<a href ="{{base_path}}/ingredient/{{ingredient.name}}/edit" class="btn btn-default">Muokkaa</a>
 </p>
 
 <p>
 	{{ingredient.description}}
 </p>
+
+<div>
+	<h2>Mukana drinkeissä:</h2>
+
+	<ul>
+		{% for drink in drinks %}
+		<li>{{drink.name}}</li>
+		{% endfor %}
+	</ul>
+
+</div>
 {% endblock %}

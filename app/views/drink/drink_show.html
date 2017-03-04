@@ -28,7 +28,7 @@
 <div>
 	<ul>
 	{% for ingredient in recipe %}
-	<li>{{ingredient.name}}</li>	
+	<li><a href={{base_path}}/ingredient/{{ingredient.name}}>{{ingredient.name}}</li>	
 	{% endfor %}
 	</ul>
 </div>

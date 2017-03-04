@@ -10,7 +10,9 @@ class IngredientController extends BaseController {
 	public static function show($name) {
 		$ingredient = Ingredient::find($name);
 		//Voisi tehdä lopuksi niin että näytetään missä kaikissa drinkeissä mukana
-		View::make('ingredient/ingredient_show.html', array('ingredient' => $ingredient));
+		$drinks = Recipe::findDrinksByIngredient($name);
+
+		View::make('ingredient/ingredient_show.html', array('ingredient' => $ingredient, 'drinks' => $drinks));
 	}
 
 	public static function create() {
@@ -26,6 +28,7 @@ class IngredientController extends BaseController {
 			);
 		$ingredient = new Ingredient($attributes);
 		$errors = $ingredient->errors();
+		$errors += $ingredient->validate_no_duplicate_names();
 
 		if (count($errors) == 0) {
 			$ingredient->save();
@@ -60,5 +63,13 @@ class IngredientController extends BaseController {
 		} else {
 			View::make('ingredient/ingredient_edit.html', array('errors' => $errors, 'attributes' => $attributes));
 		}
+	}
+
+	public static function destroy($name) {
+		$ingredient = new Ingredient(array('name'=>$name));
+
+		$ingredient->destroy();
+
+		Redirect::to('/ingredient', array('message' => 'Aineososa poistettiin onnistuneesti!'));
 	}
 }
