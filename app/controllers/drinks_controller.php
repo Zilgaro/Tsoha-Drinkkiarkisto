@@ -31,6 +31,14 @@ class DrinkController extends BaseController{
 			'drink_type' => $params['drink_type'],
 			'description' => $params['description']
 		);
+
+		if (!isset($params['ingredients'])) {
+			$ingredients = Ingredient::all();
+			$errors = array();
+			$errors[] = 'Valitse ainakin yksi ainesosa!';
+			View::make('drink/new.html', array('errors' => $errors, 'attributes' => $attributes, 'ingredients' => $ingredients));
+		}
+		
 		$ingredients = $params['ingredients'];
 		$drink = new Drink($attributes);
 		$errors = $drink->errors();
@@ -40,7 +48,8 @@ class DrinkController extends BaseController{
 
 			Redirect::to('/drink/'. $drink->id, array('message' => 'Drinkki päivitettiin onnistuneesti!'));
 		} else {
-			View::make('drink/drink_edit.html', array('errors' => $errors, 'attributes' => $attributes));
+			$ingredients = Ingredient::all();
+			View::make('drink/drink_edit.html', array('errors' => $errors, 'attributes' => $attributes, 'ingredients' => $ingredients));
 		}
 	}
 
@@ -58,6 +67,14 @@ class DrinkController extends BaseController{
 			'drink_type' => $params['drink_type'],
 			'description' => $params['description']
 		);
+
+		if (!isset($params['ingredients'])) {
+			$ingredients = Ingredient::all();
+			$errors = array();
+			$errors[] = 'Valitse ainakin yksi ainesosa!';
+			View::make('drink/new.html', array('errors' => $errors, 'attributes' => $attributes, 'ingredients' => $ingredients));
+		}
+
 		$ingredients = $params['ingredients'];
 		$drink = new Drink($attributes);
 

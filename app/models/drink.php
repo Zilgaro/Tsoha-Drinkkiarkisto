@@ -142,7 +142,9 @@ class Drink extends BaseModel{
 		$drinks = self::all();
 
 		foreach ($drinks as $drink) {
-			if ($drink->name == $this->name) {
+			$name = $drink->name;
+			$id = $drink->id;
+			if ($name == $this->name && !$id == $this->id) {
 				$errors[] = 'Nimi on jo käytössä!';
 			}
 		}
