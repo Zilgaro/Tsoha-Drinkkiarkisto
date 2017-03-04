@@ -2,7 +2,7 @@
 
 class Client extends BaseModel {
 
-	public $id, $name, $password;
+	public $id, $name, $password, $admin;
 
 	public function __construct($attributes) {
         parent::__construct($attributes);
@@ -21,7 +21,8 @@ class Client extends BaseModel {
             $clients[] = new Client(array(
                 'id' => $row['id'],
                 'name' => $row['name'],
-                'password' => $row['password']
+                'password' => $row['password'],
+                'admin' => $row['admin']
                 ));
         }
         return $clients;
@@ -35,7 +36,8 @@ class Client extends BaseModel {
             $client = new Client(array(
                 'id' => $row['id'],
                 'name' => $row['name'],
-                'password' => $row['password']
+                'password' => $row['password'],
+                'admin' => $row['admin']
             ));
             return $client;
         }
@@ -50,7 +52,8 @@ class Client extends BaseModel {
             $client = new Client(array(
                 'id' => $row['id'],
                 'name' => $row['name'],
-                'password' => $row['password']
+                'password' => $row['password'],
+                'admin' => $row['admin']
             ));
             return $client;
         }
@@ -58,13 +61,25 @@ class Client extends BaseModel {
     }
 
     public function save() {
-        $query = DB::connection()->prepare('INSERT INTO Client (name, password) VALUES (:name, :password) RETURNING id');
+        $query = DB::connection()->prepare('INSERT INTO Client (name, password, admin) VALUES (:name, :password, :admin) RETURNING id');
 
-        $query->execute(array('name' => $this->name, 'password' => $this->password));
+        $query->execute(array('name' => $this->name, 'password' => $this->password, 'admin' => $this->admin));
 
         $row = $query->fetch();
 
         $this->id = $row['id'];
+    }
+
+
+    public function checkAdmin($id) {
+        $query = DB::connection()->prepare("SELECT * FROM Client WHERE admin='t' AND id = :id LIMIT 1");
+        $query->execute(array('id'=>$id));
+        $row = $query->fetch();
+
+        if($row) {
+            return true;
+        }
+        return false;
     }
 
     public function checkAvailable($name) {

@@ -1,5 +1,6 @@
 -- Lisää INSERT INTO lauseet tähän tiedostoon
-INSERT INTO Client (name, password) VALUES ('Ano', 'Ano123');
+INSERT INTO Client (name, password, admin) VALUES ('Ano', 'Ano123', TRUE);
+INSERT INTO Client (name, password, admin) VALUES ('user', 'password', FALSE);
 
 INSERT INTO Drink (name, glass, drink_type, description) VALUES ('Tom Collins', 'Collins-lasi', 'Cocktail', 'Tom Collins on eräitä vanhimpia Amerikkalaisia cocktaileja, ensimmäistä kertaa kuvailtu vuonna 1876. Erittäin hyvä ja raikas peruscocktail kaikkiin tilanteisiin.');
 INSERT INTO Drink (name, glass, drink_type, description) VALUES ('Loimijoki', 'Highball', 'Cocktail', 'Ruskea kuin Loimijoki Finlaysonin kulta-aikana. Anis ja kokis sopii yhteen kuin nyrkki takalistoon');

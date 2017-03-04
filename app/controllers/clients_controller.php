@@ -9,6 +9,18 @@ class ClientController extends BaseController {
 		View::make('client/register.html');
 	}
 
+	public static function list_clients() {
+		$user_id = $_SESSION['user'];
+
+		if (!Client::checkAdmin($user_id)) {
+			Redirect::to('/drink', array('message' => 'PÄÄSY KIELLETTY'));
+		}
+
+		$clients = Client::all();
+
+		View::make('client/list_clients.html', array('clients' => $clients));
+	}
+
 	public static function handle_login() {
 		$params = $_POST;
 
@@ -30,7 +42,8 @@ class ClientController extends BaseController {
 		if (Client::checkAvailable($params['name'])) { // tää pitäs siirtää modelii
 			$client = new Client(array(
 				'name' => $params['name'],
-				'password' => $params['password']
+				'password' => $params['password'],
+				'admin' => FALSE
 			));
 
 

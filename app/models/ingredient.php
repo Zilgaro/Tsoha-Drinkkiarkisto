@@ -45,6 +45,11 @@ class Ingredient extends BaseModel {
 		$query->execute(array('name' => $this->name, 'description' => $this->description));
 	}
 
+	public function update() {
+		 $query = DB::connection()->prepare('UPDATE Ingredient SET description = :description WHERE name = :name');
+		 $query->execute(array('name' => $this->name, 'description' => $this->description));
+	}
+
 
 	public function validate_name() {
 		$errors = array();

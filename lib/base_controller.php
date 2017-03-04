@@ -21,5 +21,4 @@
             Redirect::to('/login', array('message' => 'Et ole kirjautunut sisään'));
         }
     }
-
   }

@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Muokkaa reseptiä {{attributes.name}}</h1>
+
+{% if message is not empty %}
+<div class="alert alert-success">
+    <p>{{text}}</p>
+</div>
+{% endif %}
+
+{% if errors %}
+<div class="alert alert-danger">
+    <ul>
+        {% for error in errors %}
+        <li>{{error}}</li>
+        {% endfor %}
+    </ul>
+</div>
+{% endif %}
+
+
+<form method='post' action='{{base_path}}/ingredient/{{attributes.name}}/edit'>
+    <div class="form-group">
+        <!--<label>Nimi</label>
+        <input type="text" class="form-control" name='name' value="{{attributes.name}}">
+    </div>
+    En usko että on kauhean järkevää päästää editoimaan nimeä koska primary key.
+    -->
+     <div class="form-group"><input type="hidden" name="name" value="{{attributes.name}}"></div>
+    
+    <div class="form-group">
+        <label>Kuvaus</label>
+        <textarea name="description" class="form-control">{{attributes.description}}</textarea>
+    </div>
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary">Tallenna</button>
+    </div>
+</form>
+{% endblock %}

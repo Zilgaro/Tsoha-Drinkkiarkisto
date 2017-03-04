@@ -60,6 +60,10 @@
     ClientController::handle_login();
   });
 
+  $routes->get('/clients', 'check_logged_in', function() {
+    ClientController::list_clients();
+  });
+
   $routes->get('/ingredient', 'check_logged_in', function() {
     IngredientController::index();
   });
