@@ -20,12 +20,20 @@
 
     <div class="form-group">
       <label>Lasityyppi</label>
-      <input type="text" name="glass" class="form-control" value="{{attributes.glass}}">
+      <select class="form-control" name="glass">
+      {% for glass in glasstypes %}
+        <option value="{{glass}}">{{glass}}</option>
+      {% endfor %}
+    </select>
     </div>
 
     <div class="form-group">
       <label>Drinkkityyppi</label>
-      <input type="text" name="drink_type" class="form-control" value="{{attributes.drink_type}}">
+      <select class="form-control" name="drink_type">
+      {% for drinktype in drinktypes %}
+        <option value="{{drinktype}}">{{drinktype}}</option>
+      {% endfor %}
+    </select>
     </div>
 
     <div class="form-group">

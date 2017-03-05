@@ -4,6 +4,7 @@ class Drink extends BaseModel{
 	
 	public $id, $name, $glass, $drink_type, $description;
 
+
 	public function __construct($attributes) {
 		parent::__construct($attributes);
 		$this->validators = array('validate_name', 'validate_name_available','validate_glass','validate_drink_type', 'validate_description');
@@ -171,6 +172,4 @@ class Drink extends BaseModel{
 
 		return $errors;
 	}
-
-
 }

@@ -1,6 +1,9 @@
 <?php 
 
-class DrinkController extends BaseController{
+class DrinkController extends BaseController {
+
+	 //Mul menee hermo siihen etten tajuu miten saan noi drinkkityyppien ja lasityyppien listat sillai ettei tarvii hakee joka kerta uusiks, php on TYHMÄ, tai sit mä oon
+
 	public static function index() {
 		$drinks = Drink::all();
 
@@ -18,8 +21,10 @@ class DrinkController extends BaseController{
 	public static function drink_edit($id) {
 		$drink = Drink::find($id);
 		$ingredients = Ingredient::all();
+		$GLASS_TYPES = Constants::getGlassTypes();
+		$DRINK_TYPES = Constants::getDrinkTypes();
 
-		View::make('drink/drink_edit.html', array('attributes' => $drink, 'ingredients' => $ingredients));
+		View::make('drink/drink_edit.html', array('attributes' => $drink, 'drinktypes' => $DRINK_TYPES, 'glasstypes' => $GLASS_TYPES, 'ingredients' => $ingredients));
 	}
 
 	public static function update($id) {
@@ -33,11 +38,14 @@ class DrinkController extends BaseController{
 			'description' => $params['description']
 		);
 
+		$GLASS_TYPES = Constants::getGlassTypes();
+		$DRINK_TYPES = Constants::getDrinkTypes();
+
 		if (!isset($params['ingredients'])) {
 			$ingredients = Ingredient::all();
 			$errors = array();
 			$errors[] = 'Valitse ainakin yksi ainesosa!';
-			View::make('drink/new.html', array('errors' => $errors, 'attributes' => $attributes, 'ingredients' => $ingredients));
+			View::make('drink/drink_edit.html', array('errors' => $errors, 'attributes' => $attributes, 'ingredients' => $ingredients, 'drinktypes' => $DRINK_TYPES, 'glasstypes' => $GLASS_TYPES));
 		}
 
 		$ingredients = $params['ingredients'];
@@ -50,13 +58,15 @@ class DrinkController extends BaseController{
 			Redirect::to('/drink/'. $drink->id, array('message' => 'Drinkki päivitettiin onnistuneesti!'));
 		} else {
 			$ingredients = Ingredient::all();
-			View::make('drink/drink_edit.html', array('errors' => $errors, 'attributes' => $attributes, 'ingredients' => $ingredients));
+			View::make('drink/drink_edit.html', array('errors' => $errors, 'drinktypes' => $DRINK_TYPES, 'glasstypes' => $GLASS_TYPES, 'attributes' => $attributes, 'ingredients' => $ingredients));
 		}
 	}
 
 	public static function create() {
 		$ingredients = Ingredient::all();
-		View::make('drink/new.html', array('ingredients' => $ingredients));
+		$GLASS_TYPES = Constants::getGlassTypes();
+		$DRINK_TYPES = Constants::getDrinkTypes();
+		View::make('drink/new.html', array('drinktypes' => $DRINK_TYPES, 'glasstypes' => $GLASS_TYPES, 'ingredients' => $ingredients));
 	} 
 
 	public static function store() {
@@ -71,9 +81,11 @@ class DrinkController extends BaseController{
 
 		if (!isset($params['ingredients'])) {
 			$ingredients = Ingredient::all();
+			$GLASS_TYPES = Constants::getGlassTypes();
+			$DRINK_TYPES = Constants::getDrinkTypes();
 			$errors = array();
 			$errors[] = 'Valitse ainakin yksi ainesosa!';
-			View::make('drink/new.html', array('errors' => $errors, 'attributes' => $attributes, 'ingredients' => $ingredients));
+			View::make('drink/new.html', array('errors' => $errors, 'drinktypes' => $DRINK_TYPES, 'glasstypes' => $GLASS_TYPES, 'attributes' => $attributes, 'ingredients' => $ingredients));
 		}
 
 		$ingredients = $params['ingredients'];
@@ -86,7 +98,9 @@ class DrinkController extends BaseController{
 
 			Redirect::to('/drink/'. $drink->id, array('message' => 'Drinkki on listätty arkistoon onnistuneesti!'));
 		} else {
-			View::make('drink/new.html', array('errors' => $errors, 'attributes' => $attributes));
+			$GLASS_TYPES = Constants::getGlassTypes();
+			$DRINK_TYPES = Constants::getDrinkTypes();
+			View::make('drink/new.html', array('errors' => $errors, 'drinktypes' => $DRINK_TYPES, 'glasstypes' => $GLASS_TYPES, 'attributes' => $attributes));
 		}
 
 	}

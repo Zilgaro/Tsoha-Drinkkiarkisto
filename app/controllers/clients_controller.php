@@ -43,7 +43,7 @@ class ClientController extends BaseController {
 			$client = new Client(array(
 				'name' => $params['name'],
 				'password' => $params['password'],
-				'admin' => FALSE
+				'admin' => 0
 			));
 
 
@@ -68,7 +68,7 @@ class ClientController extends BaseController {
 		if (!Client::checkAdmin($user_id)) {
 			Redirect::to('/drink', array('message' => 'PÄÄSY KIELLETTY'));
 		}
-		
+
 		$client = new Client(array('id' => $id));
 
 		$errors = $client->destroy();
