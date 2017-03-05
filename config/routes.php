@@ -64,6 +64,10 @@
     ClientController::list_clients();
   });
 
+  $routes->post('/clients/:id/destroy', 'check_logged_in', function($id) {
+    ClientController::destroy($id);
+  });
+
   $routes->get('/ingredient', 'check_logged_in', function() {
     IngredientController::index();
   });

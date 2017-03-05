@@ -10,8 +10,9 @@
 {% endif %}
 
 <p>
-	<form method="post"  action="{{base_path}}/drink/{{drink.id}}/destroy"style="display: inline-block;">
-		<button type="submit" class="btn btn-danger">Poista</button> 
+	<form method="post" action="{{base_path}}/drink/{{drink.id}}/destroy" style="display: inline-block;">
+		<button type="submit" class="btn btn-danger">Poista</button>
+	</form> 
 
 	<a href ="{{base_path}}/drink/{{drink.id}}/edit" class="btn btn-default">Muokkaa</a>
 </p>
@@ -24,12 +25,49 @@
 	<li><strong>Lasityyppi:</strong> {{drink.glass}}</li>
 </ul>
 
-<h3>Ainesosat:</h3>
+<h2>Ainesosat:</h2>
 <div>
 	<ul>
 	{% for ingredient in recipe %}
-	<li><a href={{base_path}}/ingredient/{{ingredient.name}}>{{ingredient.name}}</li>	
+	<li><a href={{base_path}}/ingredient/{{ingredient.name}}>{{ingredient.name}}</a></li>	
 	{% endfor %}
 	</ul>
 </div>
+
+{% if rating %}
+<h3>Arvosteluiden keskiarvo</h3>
+<p><b>{{rating}}</b></p> 
+
+<form method='post' action='{{base_path}}/drink/{{drink.id}}/rank'>
+    <div class="form-group">
+        <label>Anna arvostelu!</label>
+        <select class="form-control" name="rank">
+        	<option value=0>0</option>
+        	<option value=1>1</option>
+        	<option value=2>2</option>
+        	<option value=3>3</option>
+        	<option value=4>4</option>
+        	<option value=5>5</option> 
+        </select>
+    </div>
+<div class="form-group">
+        <button type="submit" class="btn btn-success">Lähetä arvostelu!</button>
+    </div>
+{% else %}
+<form method='post' action='{{base_path}}/drink/{{drink.id}}/rank'>
+    <div class="form-group">
+        <label>Anna arvostelu!</label>
+        <select class="form-control" name="rank">
+        	<option value=0>0</option>
+        	<option value=1>1</option>
+        	<option value=2>2</option>
+        	<option value=3>3</option>
+        	<option value=4>4</option>
+        	<option value=5>5</option> 
+        </select>
+    </div>
+<div class="form-group">
+        <button type="submit" class="btn btn-success">Ole ensimmäinen arvostelija!</button>
+    </div>
+{% endif %}
 {% endblock %}

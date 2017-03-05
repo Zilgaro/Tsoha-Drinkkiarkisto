@@ -11,7 +11,8 @@ class DrinkController extends BaseController{
 		$drink = Drink::find($id);
 		//Hae ainesosat myös reseptistä
 		$recipe = Recipe::find($id);
-		View::make('drink/drink_show.html', array('drink' => $drink, 'recipe' => $recipe));
+		$rating = Drink::findAverageRatingsById($id);
+		View::make('drink/drink_show.html', array('drink' => $drink, 'recipe' => $recipe, 'rating' => $rating));
 	}
 
 	public static function drink_edit($id) {

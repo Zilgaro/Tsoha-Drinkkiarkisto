@@ -70,6 +70,20 @@ class Client extends BaseModel {
         $this->id = $row['id'];
     }
 
+    public function destroy() {
+        $errors = array();
+        if (self::checkAdmin($this->id)) {
+            $errors[] = 'Ylläpitäjäkäyttäjää ei voi poistaa!';
+            return $errors;
+        }
+
+        $query = DB::connection()->prepare('DELETE FROM Client WHERE id = :id');
+
+        $query->execute(array('id' => $this->id));
+
+        return $errors;
+    }
+
 
     public function checkAdmin($id) {
         $query = DB::connection()->prepare("SELECT * FROM Client WHERE admin='t' AND id = :id LIMIT 1");

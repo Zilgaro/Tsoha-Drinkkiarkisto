@@ -62,6 +62,24 @@ class ClientController extends BaseController {
 		}
 	}
 
+	public static function destroy($id) {
+		$user_id = $_SESSION['user'];
+
+		if (!Client::checkAdmin($user_id)) {
+			Redirect::to('/drink', array('message' => 'PÄÄSY KIELLETTY'));
+		}
+		
+		$client = new Client(array('id' => $id));
+
+		$errors = $client->destroy();
+
+		if (count($errors) == 0) {
+			Redirect::to('/clients', array('message' => 'Käyttäjätunnus poistettiin onnistuneesti!'));
+		} else {
+			View::make('client/list_clients.html', array('errors' => $errors));
+		}
+	}
+
 	public static function logout() {
 		$_SESSION['user'] = null;
 		Redirect::to('/login', array('message' => 'Olet kirjautunut ulos!'));

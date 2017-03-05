@@ -27,6 +27,7 @@ class Drink extends BaseModel{
 				'description' => $row['description']
 				));
 		}
+
 		return $drinks;
 	}
 
@@ -47,6 +48,25 @@ class Drink extends BaseModel{
     		return $drink;
     	}
     	return null;
+	}
+
+	public static function findAverageRatingsById($id) {
+		$query = DB::connection()->prepare('SELECT rating FROM Rating WHERE drink = :id');
+
+		$query->execute(array('id' => $id));
+		$rows = $query->fetchAll();
+
+		$average = 0;
+
+		foreach ($rows as $row) {
+			$average += $row['rating'];
+		}
+
+		if ($average != null) {
+			$average = $average / count($rows);
+		}
+
+		return $average;
 	}
 
 	public function save($ingredients) {
