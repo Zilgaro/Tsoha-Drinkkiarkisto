@@ -14,7 +14,7 @@ class DrinkController extends BaseController {
 		$drink = Drink::find($id);
 		//Hae ainesosat myös reseptistä
 		$recipe = Recipe::find($id);
-		$rating = Drink::findAverageRatingsById($id);
+		$rating = Rating::averageRatingsByDrinkId($id);
 		View::make('drink/drink_show.html', array('drink' => $drink, 'recipe' => $recipe, 'rating' => $rating));
 	}
 
@@ -111,5 +111,22 @@ class DrinkController extends BaseController {
 		$drink->destroy();
 
 		Redirect::to('/drink', array('message' => 'Drinkki poistettiin onnistuneesti!'));
+	}
+
+	//pitäs oikeesti varmaa olla oma kontrolleri mut emt
+	public static function rate($drink) {
+		$params = $_POST;
+		$client = $_SESSION['user'];
+
+		$attributes = array(
+			'client' => $client,
+			'drink' => $drink,
+			'rating' => $params['rating']
+		);
+
+		$rating = new Rating($attributes);
+		$rating->save();
+
+		Redirect::to('/drink/' . $drink, array('message' => 'Arvostelu lisätty onnistuneesti!'));
 	}
 }

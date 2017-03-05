@@ -40,6 +40,10 @@
     DrinkController::destroy($id);
   });
 
+  $routes->post('/drink/:id/rank', 'check_logged_in', function($id) {
+    DrinkController::rate($id);
+  });
+
   $routes->get('/register', function() {
     ClientController::register();
   });
