@@ -68,7 +68,7 @@
     ClientController::list_clients();
   });
 
-  $routes->post('/clients/:id/destroy', 'check_logged_in', function($id) {
+  $routes->post('/client/:id/destroy', 'check_logged_in', function($id) {
     ClientController::destroy($id);
   });
 
