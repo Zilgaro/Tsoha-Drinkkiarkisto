@@ -125,8 +125,14 @@ class DrinkController extends BaseController {
 		);
 
 		$rating = new Rating($attributes);
-		$rating->save();
 
-		Redirect::to('/drink/' . $drink, array('message' => 'Arvostelu lisätty onnistuneesti!'));
+		if ($rating->check_if_exists_rating_by_client()) {
+			$rating->update();
+			Redirect::to('/drink/' . $drink, array('message' => 'Arvostelu päivitetty onnistuneesti!'));
+		} else {
+			$rating->save();
+
+			Redirect::to('/drink/' . $drink, array('message' => 'Arvostelu lisätty onnistuneesti!'));
+		}
 	}
 }

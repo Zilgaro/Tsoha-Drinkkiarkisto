@@ -35,13 +35,13 @@
 </div>
 
 {% if rating %}
-<h3>Arvosteluiden keskiarvo</h3>
+<h3>KAikkien käyttäjien arvosteluiden keskiarvo</h3>
 <p><b>{{rating}}</b></p> 
 
 <form method='post' action='{{base_path}}/drink/{{drink.id}}/rank'>
     <div class="form-group">
         <label>Anna arvostelu!</label>
-        <select class="form-control" name="rank">
+        <select class="form-control" name="rating">
         	<option value=0>0</option>
         	<option value=1>1</option>
         	<option value=2>2</option>

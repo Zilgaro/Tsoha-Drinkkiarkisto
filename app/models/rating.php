@@ -7,13 +7,18 @@ class Rating extends BaseModel {
 			parent::__construct($attributes);
 		}
 
-		public function save() {
-			$query = DB::connection()->prepare('INSERT INTO Rating (client, drink, rating) VALUES (:client, :drink, :rating)');
-			$query->execute(array('client' => $this->client, 'drink' => $this->drink, 'rating' => $this->rating));
+	public function save() {
+		$query = DB::connection()->prepare('INSERT INTO Rating (client, drink, rating) VALUES (:client, :drink, :rating)');
+		$query->execute(array('client' => $this->client, 'drink' => $this->drink, 'rating' => $this->rating));
 
-		}
+	}
 
-		public static function averageRatingsByDrinkId($id) {
+	public function update() {
+		$query = DB::connection()->prepare('UPDATE Rating SET rating = :rating WHERE client = :client AND drink = :drink');
+		$query->execute(array('client'=> $this->client, 'drink' => $this->drink, 'rating' => $this->rating));
+	}
+
+	public static function averageRatingsByDrinkId($id) {
 		$query = DB::connection()->prepare('SELECT rating FROM Rating WHERE drink = :id');
 
 		$query->execute(array('id' => $id));
@@ -30,5 +35,17 @@ class Rating extends BaseModel {
 		}
 
 		return $average;
+	}
+
+	public function check_if_exists_rating_by_client() {
+		$query = DB::connection()->prepare('SELECT rating FROM Rating WHERE client = :client AND drink = :drink LIMIT 1');
+		$query->execute(array('client' => $this->client, 'drink' => $this->drink));
+		$row = $query->fetch();
+
+		if($row) {
+			return true;
+		}
+		return false;
+
 	}
 }
