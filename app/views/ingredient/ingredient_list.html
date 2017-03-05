@@ -39,7 +39,6 @@
 		{% for ingredient in ingredients %}
 			<tr>
 				<td><a href="{{base_path}}/ingredient/{{ingredient.name}}">{{ingredient.name}}</a></td>
-				<td>25.1.2017</td>
 				<th>{{forms.edit_button("#{base_path}/ingredient/#{ingredient.name}/edit")}}</th>
 			</tr>
 			{% endfor %}

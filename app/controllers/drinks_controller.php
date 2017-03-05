@@ -38,7 +38,7 @@ class DrinkController extends BaseController{
 			$errors[] = 'Valitse ainakin yksi ainesosa!';
 			View::make('drink/new.html', array('errors' => $errors, 'attributes' => $attributes, 'ingredients' => $ingredients));
 		}
-		
+
 		$ingredients = $params['ingredients'];
 		$drink = new Drink($attributes);
 		$errors = $drink->errors();
